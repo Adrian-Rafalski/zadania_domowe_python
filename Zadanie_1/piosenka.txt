@@ -1,15 +1,15 @@
 Zwrotka-1.txt
 
-refren-1.txt
+refren.txt
 
 zwrotka-2.txt
 
-refren-2.txt
+refren.txt
 
 zwrotka-3.txt
 
-refren-3.txt
+refren.txt
 
 zwrotka-4.txt
 
-refren-4.txt
+refren.txt
