@@ -1,0 +1,69 @@
+$ git log -p piosenka.txt
+commit 5c60f95f43c8637d3ba51a2225db59031a64d9bd
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 19:25:44 2024 +0200
+
+    usunięto duplikaty refrenów i zastąpiono je jednym uniwersalnym
+
+:
+
+
+$ git log -p refren.txt
+commit d6062df8219e03fd2d623cbf457e8a51d5271af3 (HEAD -> main, origin/main)
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 19:26:21 2024 +0200
+
+    zmodyfikowany plik refrenu
+
+:
+
+
+$ git log Zwrotka-1.txt
+commit bec827b0ec137de9cac15b34b43da47bba6dd190
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 18:01:33 2024 +0200
+
+
+
+    Przeniosłem pierwszą zwrotkę do pliku Zwrotka-1.txt
+
+
+$ git log -p zwrotka-2.txt
+commit 6a1cde22cb6fb9f7600c3310d52ca8194ec673cf
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 18:04:55 2024 +0200
+
+    przeniosłem drugą zwrotkę do pliku zwrotka-2.txt
+
+:
+
+
+
+$ git log zwrotka-3.txt
+commit c7c6bc6de4ee227d07e78029654e19fc32a8303d
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 18:14:52 2024 +0200
+
+    przenisołem trzecią zwrotkę do pliku zwrotka-3.txt
+
+
+
+
+$ git log -p zwrotka-4.txt
+commit e25fd10fcecd3e3eeec74991595eda9e554a746f
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 18:19:41 2024 +0200
+
+    przeniosłem czwartą i ostatnią zwrotkę do pliku zwrotka-4.txt
+
+
+
+
+$ git log
+commit d6062df8219e03fd2d623cbf457e8a51d5271af3 (HEAD -> main, origin/main)
+Author: Adrian Rafalski <adrian.rafalski91@gmail.com>
+Date:   Thu May 16 19:26:21 2024 +0200
+
+    zmodyfikowany plik refrenu
+
+:
