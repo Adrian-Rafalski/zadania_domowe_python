@@ -2,7 +2,8 @@
 import datetime
 import sys
 
-
+aktualna_data = datetime.datetime.now()
+obecny_rok = aktualna_data.year
 
 while True:
     imie_odbiorcy = input("Podaj imię solenizanta: ")
@@ -22,6 +23,9 @@ while True:
     rok =int(rok)
     if rok < 0:
         print("Rok urodzenia nie może być ujemny. Wprowadź poprawne dane")
+        continue
+    if rok > obecny_rok:
+        print("Ludzie nie rodzą się w przyszłości. Wprowadź poprawne dane")
         continue
     if rok_urodzenia.isdigit():
         break
@@ -47,12 +51,11 @@ while True:
         break
 
 
-aktualna_data = datetime.datetime.now()
-obecny_rok = aktualna_data.year
 wiek = (obecny_rok - rok)
 
 print(f'''{imie_odbiorcy}, wszystkiego najlepszego z okazji {wiek} urodzin!
 
 {zyczenia}
 
+Gorące pozdrowienia i jeszcze raz wszystkiego najlepszego
 {imie_nadawcy}''')
