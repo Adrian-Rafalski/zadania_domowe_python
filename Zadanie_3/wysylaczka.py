@@ -4,7 +4,8 @@ print("Witaj w firmie kurierskiej 'Tam i z powrotem'")
 liczba_przedmiotow = int(input("Podaj liczbę przedmiotów do wysłania: "))
 
 waga_sumaryczna = 0
-waga_paczki = 20
+obecna_waga_paczki = 0
+maksymalna_waga_paczki = 20
 ilosc_paczek = []
 
 for n in range(liczba_przedmiotow):
