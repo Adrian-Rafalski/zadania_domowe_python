@@ -1,12 +1,14 @@
 
 class Uczen:
-    def __init__(self, imie, nazwisko, klasa_ucznia):
+    def __init__(self, imie, nazwisko, klasa_ucznia, przedmiot):
         self.imie = imie
         self.nazwisko = nazwisko
-        self.klasa = klasa_ucznia
+        self.klasa_ucznia = klasa_ucznia
+        self.przedmiot_ucznia = przedmiot
 
     def __repr__(self):
-        return f"Uczeń {self.imie} {self.nazwisko} z klasy {self.klasa}"
+        return (f"Uczeń {self.imie} {self.nazwisko} z klasy {self.klasa_ucznia}"
+                f" uczęszcza na następujące lekcje: {self.przedmiot_ucznia}")
 
 
 class Nauczyciel:
@@ -17,17 +19,19 @@ class Nauczyciel:
         self.klasa_nauczyciela = klasa_nauczyciela
 
     def __repr__(self):
-        return f"Nauczyciel {self.imie} {self.nazwisko} naucza przedmiotu {self.przedmiot_nauczania} w klasach {self.klasa_nauczyciela} "
+        return (f"Nauczyciel {self.imie} {self.nazwisko} naucza przedmiotu {self.przedmiot_nauczania}"
+                f" w klasach {self.klasa_nauczyciela} ")
 
 
 class Wychowawca:
     def __init__(self, imie, nazwisko, klasa_wychowawcy):
         self.imie = imie
-        self.nzawisko = nazwisko
-        self.klasa = klasa_wychowawcy
+        self.nazwisko = nazwisko
+        self.klasa_wychowawcy = klasa_wychowawcy
 
     def __repr__(self):
-        return f"Wychowawca {self.imie} {self.nzawisko} opiekuje się klasą {self.klasa}"
+        return f"Wychowawca {self.imie} {self.nazwisko} opiekuje się klasą {self.klasa_wychowawcy}"
+
 
 class Klasa:
     def __init__(self, numer_klasy, imie_ucznia, nazwisko_ucznia, imie_wychowawcy, nazwisko_wychowawcy):
@@ -38,24 +42,59 @@ class Klasa:
         self.nazwisko_wychowawcy = nazwisko_wychowawcy
 
     def __repr__(self):
-        return f"W klasie o numerze {self.numer_klasy} uczniami są {self.imie_ucznia} {self.nazwisko_ucznia} natomiast wychowawcą jest {self.imie_wychowawcy} {self.nazwisko_wychowawcy}"
+        return (f"W klasie o numerze {self.numer_klasy} uczniami są {self.imie_ucznia} {self.nazwisko_ucznia} "
+                f"natomiast wychowawcą jest {self.imie_wychowawcy} {self.nazwisko_wychowawcy}")
 
-def wyszukanie_klasy_i_przedmiotow_ucznia(imie, nazwisko, przedmioty):
-    for uczen in przedmioty:
-        if uczen.imie == imie and uczen.nazwisko == nazwisko:
-            return uczen.przedmiot_nauczania
+# def wyszukanie_klasy_po_imienieu_i_nazwisku_ucznia(imie, nazwisko, klasa):
+#     for uczen in klasa:
+#         if uczen.imie == imie and uczen.nazwisko == nazwisko:
+#             return uczen.klasa_ucznia
+
 
 def podanie_listy_uczniow_po_numerze_klasy(numer_klasy, lista_uczniow):
-    uczniowie_w_klasie = []
+    lista_uczniow_w_klasie = []
     for uczen in lista_uczniow:
-        if uczen.klasa == numer_klasy:
-            uczniowie_w_klasie.append(uczen)
-        return uczniowie_w_klasie
+        if uczen.klasa_ucznia == numer_klasy:
+            lista_uczniow_w_klasie.append(uczen)
+    return lista_uczniow_w_klasie
+
+
+def podanie_wychowawcy_po_numerze_klasy(numer_klasy, lista_wychowawcow):
+    for wychowawca in lista_wychowawcow:
+        if wychowawca.klasa_wychowawcy == numer_klasy:
+            return wychowawca
+
+
+def wyszukanie_przedmiotow_po_imieniu_i_nazwisku_ucznia(imie, nazwisko, lista_uczniow):
+    for uczen in lista_uczniow:
+        if uczen.imie == imie and uczen.nazwisko == nazwisko:
+            return uczen.przedmiot_ucznia
+
+
+# def wyszukanie_nauczyciela_po_nazwie_przedmiotu(nazwa_przedmiotu, lista_nauczycieli):
+#     for nauczyciel in lista_nauczycieli:
+#         if nazwa_przedmiotu in nazwa_przedmiotu.przedmiot_nauczania:
+#             return nauczyciel
+
+
+def wyszukanie_klas_po_imieniu_i_nazwisku_nauczyciela(imie, nazwisko, lista_klas):
+    lista_klas_nauczyciela = []
+    for nauczyciel in lista_klas:
+        if nauczyciel.imie == imie and nauczyciel.nazwisko == nazwisko:
+            lista_klas_nauczyciela.append(nauczyciel)
+    return lista_klas_nauczyciela
+
+
+def wyszukiwanie_klasy_po_wychowawcy(imie, nazwisko, lista_wychowawcow):
+    for wychowawca in lista_wychowawcow:
+        if wychowawca.imie == imie and wychowawca.nazwisko == nazwisko:
+            return wychowawca.klasa_wychowawcy
+
 
 szkola = {
-    "uczniowie": [Uczen("Adam", "Małysz", "3C"), Uczen("Domino", "Jachaś", "3C"), Uczen("Julian", "Król", "6A")],
+    "Uczniowie": [Uczen("Adam", "Kos", "3C", ["Biologia", "Chemia"]), Uczen("Kamil", "Zdun", "3C", ["Chemia"]), Uczen("Domino", "Jachaś", "6A", ["Matematyka", "Chemia"])],
     "Nauczyciele": [Nauczyciel("Anna", "Wojna", "Biologia", ["3C", "6A"]), Nauczyciel("Jerzy", "Ważny", "Chemia", ["6A"]), Nauczyciel("Daria", "Liczydło", "Matematyka", ["3C"])],
-    "Wychowawcy": [Wychowawca("Grażyna", "Pierzyna", "3C"), Wychowawca("Wojciech", "Noga", "6A")],
+    "Wychowawcy": [Wychowawca("Anna", "Wad", "3C"), Wychowawca("Wojciech", "Noga", "6A")],
     "klasy": [Klasa("3C", "Adam", "Małysz", "Grażyna", "Pierzyna"), Klasa("6A", "Julian", "Król", "Wojciech", "Noga")]
 }
 
@@ -78,8 +117,15 @@ while not koniec_programu:
             imie = input("Podaj imię nowego ucznia: ")
             nazwisko = input("Podaj nazwisko nowego ucznia: ")
             klasa = input("Podaj klasę do której uczęszcza uczeń: ")
-            szkola["uczniowie"].append(Uczen(imie, nazwisko, klasa))
-            szkola["klasy"].append(Klasa(klasa, imie, nazwisko, "", ""))
+            lista_przedmiotow = []
+            nowy_przedmiot = True
+            while nowy_przedmiot:
+                lekcje = input("Podaj przedmioty na jakie uczęszcza uczeń potwierdzając każdy z nich klawiszem Enter: ")
+                if lekcje:
+                    lista_przedmiotow.append(lekcje)
+                else:
+                    nowy_przedmiot = False
+            szkola["Uczniowie"].append(Uczen(imie, nazwisko, klasa, lista_przedmiotow))
 
         elif tworzenie == "2" or tworzenie == "Nauczyciel":
             imie = input("Podaj imię nauczyciela: ")
@@ -99,7 +145,8 @@ while not koniec_programu:
             imie = input("Podaj imię wychowawcy: ")
             nazwisko = input("Podaj nazwisko wychowawcy: ")
             klasa_wychowawcy = input("Podaj numer klasy którą opiekuje się wychowawca: ")
-            szkola["Wychowawcy"].append(Wychowawca(imie, nazwisko , klasa_wychowawcy))
+            szkola["Wychowawcy"].append(Wychowawca(imie, nazwisko, klasa_wychowawcy))
+            szkola["klasy"].append(Klasa("", "", "", imie, nazwisko))
 
         elif tworzenie == "4" or tworzenie == "Koniec":
             continue
@@ -114,16 +161,31 @@ while not koniec_programu:
         if zarzadzanie == "1" or zarzadzanie == "Uczeń":
             imie_ucznia = input("Podaj imię ucznia: ")
             nazwisko_ucznia = input("Podaj nazwisko ucznia: ")
-            if imie_ucznia in szkola["uczniowie"] and nazwisko_ucznia in szkola["uczniowie"]:
-                print("Bedzie dzialac")
+            zajecia_ucznia = (wyszukanie_przedmiotow_po_imieniu_i_nazwisku_ucznia(imie_ucznia, nazwisko_ucznia, szkola.get("Uczniowie")))
+            print(f"Uczeń {imie_ucznia} {nazwisko_ucznia} uczęszcza na zajęcia: {zajecia_ucznia}")
+            # nauczyciel_przedmiotu = (wyszukanie_nauczyciela_po_nazwie_przedmiotu(zajecia_ucznia, szkola.get("Nauczyciele")))
+            # print(nauczyciel_przedmiotu)
 
         elif zarzadzanie == "2" or zarzadzanie == "Klasa":
-            numer_klasy = input("Podaj numer klasy aby wyświetlić jej uczniów: ")
-            if numer_klasy in szkola["klasy"]:
-                print(f"Uczniowie klasy {numer_klasy}: {szkola['klasy'][numer_klasy]}")
+            numer_klasy_do_sprawdzenia = input("Podaj numer klasy aby wyświetlić jej uczniów: ")
+            print(podanie_listy_uczniow_po_numerze_klasy(numer_klasy_do_sprawdzenia, szkola.get("Uczniowie")))
+            print(podanie_wychowawcy_po_numerze_klasy(numer_klasy_do_sprawdzenia, szkola.get("Wychowawcy")))
 
+        elif zarzadzanie == "3" or zarzadzanie == "Nauczyciel":
+            imie = input("Podaj imię nauczyciela: ")
+            nazwisko = input("Podaj nazwisko nauczyciela: ")
+            print(wyszukanie_klas_po_imieniu_i_nazwisku_nauczyciela(imie, nazwisko, szkola.get("Nauczyciele")))
 
+        elif zarzadzanie == "4" or zarzadzanie == "Wychowawca":
+            imie = input("Podaj imię wychowawcy: ")
+            nazwisko = input("Podaj nazwisko wychowawcy: ")
+            klasa_wychowawcy = (wyszukiwanie_klasy_po_wychowawcy(imie, nazwisko, szkola.get("Wychowawcy")))
+            print(f"Nauczyciel {imie} {nazwisko} jest wychowawcą klasy {klasa_wychowawcy}")
+            lista_uczniow_wychowawcy = (podanie_listy_uczniow_po_numerze_klasy(klasa_wychowawcy, szkola.get("Uczniowie")))
+            print(f"W klasie wychowawcy znajdują się: {lista_uczniow_wychowawcy}")
 
+        elif zarzadzanie == "5" or zarzadzanie == "Koniec":
+            continue
 
     elif menu_glowne == "3" or menu_glowne == "Koniec":
         print("Koniec")
